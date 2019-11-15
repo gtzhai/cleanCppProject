@@ -4,6 +4,13 @@
 if (CMAKE_CXX_COMPILER_ID MATCHES "Clang" OR "${CMAKE_CXX_COMPILER_ID}" STREQUAL "GNU")
     message(STATUS "Sanitizers:")
 
+    option(CODECOVERAGE "description" OFF)
+    message(STATUS "  + ADDRESS_SANITIZER                     ${ADDRESS_SANITIZER}")
+
+    if(ADDRESS_SANITIZER)
+        include(CodeCoverage)
+    endif()
+
     option(ADDRESS_SANITIZER "description" OFF)
     message(STATUS "  + ADDRESS_SANITIZER                     ${ADDRESS_SANITIZER}")
     if(ADDRESS_SANITIZER)

@@ -14,6 +14,8 @@ endmacro()
 
 # enable if doxygen found
 find_package(Doxygen 1.8.0)
+find_package(PythonInterp)
+find_program(MAKE_EXE make)
 message(STATUS "Can build doc?                            ${DOXYGEN_FOUND}")
 if(DOXYGEN_FOUND)
     # Search for plantUML for creating UML diagrams from doxygen
@@ -44,13 +46,28 @@ if(DOXYGEN_FOUND)
     set(doxyfile ${CMAKE_CURRENT_BINARY_DIR}/Doxyfile)
     configure_file(${doxyfile_in} ${doxyfile} @ONLY)
 
+    add_custom_target(doc)
+
     # doc build only target, target is not in default build, so it must be
     # triggered explicitly
-    add_custom_target(doc
+    add_custom_target(docs-doxygen
         COMMAND ${DOXYGEN_EXECUTABLE} ${doxyfile}
         WORKING_DIRECTORY ${PROJECT_SOURCE_DIR}
         COMMENT "Generating API documentation with Doxygen"
         VERBATIM)
+
+    # Dependency to XML will be added by sphinx, not the default
+    add_dependencies(doc docs-doxygen)
+
+    if (PYTHONINTERP_FOUND AND NOT ${MAKE_EXE} STREQUAL "MAKE_EXE-NOTFOUND")
+        message("-- Python, doxygen and make found, target 'docs-sphinx' enabled.")
+        add_custom_target(docs-sphinx
+                DEPENDS docs-doxygen
+                COMMAND ${MAKE_EXE} html
+                WORKING_DIRECTORY ${PROJECT_SOURCE_DIR}/doc/sphinx
+                )
+        add_dependencies(doc docs-sphinx)
+    endif()
 
     # Where docs will be installed.
     # Note: if docs shall be not a part of final release, leave this commented out

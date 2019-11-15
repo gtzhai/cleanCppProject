@@ -58,7 +58,8 @@ HTML_COLORSTYLE_GAMMA  = 80
 # max size 200x55px
 PROJECT_LOGO           =
 
-
+GENERATE_XML           = YES
+XML_OUTPUT             = xml
 
 
 # If the REFERENCED_BY_RELATION tag is set to YES then for each documented

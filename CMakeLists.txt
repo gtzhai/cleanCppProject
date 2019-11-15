@@ -56,7 +56,7 @@ endif()
 # Included CMakeLists.txt
 
 # External resources/repositories are downloaded here
-add_subdirectory(external)
+add_subdirectory(3rd)
 
 # Documentation build
 add_subdirectory(doc)
@@ -69,10 +69,10 @@ enable_testing()
 add_subdirectory(test)
 
 # Source code
-add_subdirectory(source)
+add_subdirectory(src)
 
 # Packaging stuff (deb, rpm, windows installer)
-add_subdirectory(packaging)
+add_subdirectory(pack)
 
 
 
