@@ -2,7 +2,6 @@
 #include <string>
 #include <vector>
 
-
 /**
  * Empty BaseClass, just to show how it looks in doxygen.
  *
@@ -18,18 +17,18 @@
  */
 class BaseClass
 {
-  public:
-    BaseClass()
-    {
-        mPointer = new int(5);
-    };
+ public:
+	BaseClass()
+	{
+		mPointer = new int(5);
+	};
 
-    ~BaseClass() {};
-    void freePtr()
-    {
-        delete mPointer;
-    };
-    int* mPointer;
+	~BaseClass(){};
+	void freePtr()
+	{
+		delete mPointer;
+	};
+	int* mPointer;
 };
 
 /**
@@ -37,9 +36,9 @@ class BaseClass
  */
 class Data
 {
-  public:
-    Data() {};
-    ~Data() {};
+ public:
+	Data(){};
+	~Data(){};
 };
 
 /**
@@ -50,25 +49,25 @@ class Data
  */
 class SomeClass : public BaseClass
 {
-    int mVal {0}; ///< Stores the value
-    std::vector<Data> mData;
-    std::vector<std::string> mStrings;
+	int						 mVal{ 0 };  ///< Stores the value
+	std::vector<Data>		 mData;
+	std::vector<std::string> mStrings;
 
-  public:
-    SomeClass(); ///< Creates empty SomeClass
-    ~SomeClass();
+ public:
+	SomeClass();  ///< Creates empty SomeClass
+	~SomeClass();
 
-    Data* mParent;
+	Data* mParent;
 
-    /**
-     * Sets the value
-     * @param x input value
-     */
-    void set(int x);
+	/**
+   * Sets the value
+   * @param x input value
+   */
+	void set(int x);
 
-    /**
-     * get the value
-     * @return current value
-     */
-    int get();
+	/**
+   * get the value
+   * @return current value
+   */
+	int get();
 };

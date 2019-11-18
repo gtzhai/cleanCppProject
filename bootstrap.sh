@@ -18,7 +18,7 @@ if [ "$PACKMAN" == "apt-get" ];then
   apt-get install -y libltdl7
   apt-get install -y --no-install-recommends build-essential automake autoconf autogen libtool flex bison pkg-config g++ cmake scons ggcov lcov curl unzip sloccount git git-core jenkins doxygen ttf-dejavu subversion
   apt-get install -y cppcheck clang-tidy clang valgrind clang-format
-  apt-get install -y ninja-build
+  apt-get install -y ninja-build graphviz plantuml
   apt-get install -y python-pip
 
   #install python development packages

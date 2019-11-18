@@ -15,7 +15,7 @@ STRIP_FROM_PATH        = @CMAKE_CURRENT_SOURCE_DIR_LINUX@ \
                          @PROJECT_SOURCE_DIR_LINUX@
 INPUT                  = @PROJECT_SOURCE_DIR_LINUX@/readme.md \
                          @CMAKE_CURRENT_SOURCE_DIR_LINUX@ \ 
-                         @PROJECT_SOURCE_DIR_LINUX@/source
+                         @PROJECT_SOURCE_DIR_LINUX@/src
                          
 FILE_PATTERNS          = *.h \
                          *.hpp \
@@ -27,6 +27,9 @@ FILE_PATTERNS          = *.h \
                          *.md
 RECURSIVE              = YES
 USE_MDFILE_AS_MAINPAGE = "@PROJECT_SOURCE_DIR_LINUX@/readme.md"
+
+OUTPUT_DIRECTORY       = build
+
 # output location
 HTML_OUTPUT            = "@CMAKE_CURRENT_BINARY_DIR_LINUX@/doc"
 
@@ -47,8 +50,7 @@ DOT_PATH               = "@DOT_PATH_LINUX@"
 # Macedonian, Norwegian, Persian (Farsi), Polish, Portuguese, Romanian, Russian,
 # Serbian, Serbian-Cyrillic, Slovak, Slovene, Spanish, Swedish, Turkish,
 # Ukrainian and Vietnamese.
-# The default value is: English.
-OUTPUT_LANGUAGE        = English
+# The default value is: English.  OUTPUT_LANGUAGE        = English
 
 # Color style
 HTML_COLORSTYLE_HUE    = 220
@@ -58,8 +60,6 @@ HTML_COLORSTYLE_GAMMA  = 80
 # max size 200x55px
 PROJECT_LOGO           =
 
-GENERATE_XML           = YES
-XML_OUTPUT             = xml
 
 
 # If the REFERENCED_BY_RELATION tag is set to YES then for each documented

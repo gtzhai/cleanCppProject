@@ -4,6 +4,9 @@ include(cleanCppExtensions)
 # Creates options to turn on sanitizers, see cmake/sanitizers.cmake
 include(sanitizers)
 
+# Creates options to turn on coverage, see cmake/CodeCoverage.cmake
+include(CodeCoverage)
+
 # Enable helpfull warnings and C++14 for all files
 if(MSVC)
     add_compile_options(/std:c++14 /W3 /WX )

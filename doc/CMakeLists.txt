@@ -46,28 +46,44 @@ if(DOXYGEN_FOUND)
     set(doxyfile ${CMAKE_CURRENT_BINARY_DIR}/Doxyfile)
     configure_file(${doxyfile_in} ${doxyfile} @ONLY)
 
-    add_custom_target(doc)
-
     # doc build only target, target is not in default build, so it must be
     # triggered explicitly
-    add_custom_target(docs-doxygen
+    add_custom_target(doc
         COMMAND ${DOXYGEN_EXECUTABLE} ${doxyfile}
         WORKING_DIRECTORY ${PROJECT_SOURCE_DIR}
         COMMENT "Generating API documentation with Doxygen"
         VERBATIM)
 
-    # Dependency to XML will be added by sphinx, not the default
-    add_dependencies(doc docs-doxygen)
+    #add_custom_target(doc)
+    #if (PYTHONINTERP_FOUND AND NOT ${MAKE_EXE} STREQUAL "MAKE_EXE-NOTFOUND")
+    #    message("-- Python, doxygen and make found, target 'docs-sphinx' enabled.")
+    #    # configure doxygen configuration file
+    #    set(doxyfile_in ${CMAKE_CURRENT_SOURCE_DIR}/sphinx/source/Doxyfile.in)
+    #    set(doxyfile ${CMAKE_CURRENT_SOURCE_DIR}/sphinx/source/Doxyfile)
+    #    configure_file(${doxyfile_in} ${doxyfile} @ONLY)
 
-    if (PYTHONINTERP_FOUND AND NOT ${MAKE_EXE} STREQUAL "MAKE_EXE-NOTFOUND")
-        message("-- Python, doxygen and make found, target 'docs-sphinx' enabled.")
-        add_custom_target(docs-sphinx
-                DEPENDS docs-doxygen
-                COMMAND ${MAKE_EXE} html
-                WORKING_DIRECTORY ${PROJECT_SOURCE_DIR}/doc/sphinx
-                )
-        add_dependencies(doc docs-sphinx)
-    endif()
+    #    add_custom_target(docs-sphinx
+    #            COMMAND ${MAKE_EXE} html
+    #            WORKING_DIRECTORY ${PROJECT_SOURCE_DIR}/doc/sphinx
+    #            )
+
+    #    add_dependencies(doc docs-sphinx)
+    #else()
+    #    # configure doxygen configuration file
+    #    set(doxyfile_in ${CMAKE_CURRENT_SOURCE_DIR}/doxygen/Doxyfile.in)
+    #    set(doxyfile ${CMAKE_CURRENT_BINARY_DIR}/Doxyfile)
+    #    configure_file(${doxyfile_in} ${doxyfile} @ONLY)
+
+    #    # doc build only target, target is not in default build, so it must be
+    #    # triggered explicitly
+    #    add_custom_target(docs-doxygen
+    #        COMMAND ${DOXYGEN_EXECUTABLE} ${doxyfile}
+    #        WORKING_DIRECTORY ${PROJECT_SOURCE_DIR}/doc/doxygen
+    #        COMMENT "Generating API documentation with Doxygen"
+    #        VERBATIM)
+
+    #    add_dependencies(doc docs-doxygen)
+    #endif()
 
     # Where docs will be installed.
     # Note: if docs shall be not a part of final release, leave this commented out
@@ -77,7 +93,5 @@ if(DOXYGEN_FOUND)
     #     DESTINATION share/doc/${PROJECT_NAME}
     #     OPTIONAL)
 endif()
-
-
 
 
